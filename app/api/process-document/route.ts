@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/client";
 import { generateStudyContent } from "@/lib/ai/groq";
-import pdfParse from "pdf-parse";
+// @ts-ignore - pdf-parse is CommonJS and doesn't support ES6 imports
+const pdfParse = require("pdf-parse");
 import mammoth from "mammoth";
 
 /**
