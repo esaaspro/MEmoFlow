@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --purple: #a855f7;
+  --pink: #ec4899;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Effet de dégradé pour les textes - Version Tech/Premium */
+.gradient-text {
+  @apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
+}
+
+/* Glow effect pour les boutons - Version Subtile */
+.glow-purple {
+  box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15), 0 0 64px rgba(168, 85, 247, 0.08);
+}
+
+/* Animation de pulsation subtile (si nécessaire) */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #a855f7, #ec4899);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #9333ea, #db2777);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utilitaire pour dégradé radial */
+.bg-gradient-radial {
+  background: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* ============================================
+   FLUID TYPOGRAPHY - Hero Section
+   ============================================ */
+
+/* H1 Title - Responsive & Elastic */
+.fluid-title {
+  font-size: clamp(2rem, 4vw + 1rem, 4.5rem);
+  line-height: clamp(2.25rem, 4.5vw + 1rem, 5rem);
+  /* 
+    Mobile (320px): ~32px (2rem)
+    Tablet (768px): ~48px (3rem)
+    Desktop (1920px): ~72px (4.5rem max)
+  */
+}
+
+/* H2 Subtitle - Responsive & Elastic */
+.fluid-subtitle {
+  font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
+  line-height: clamp(1.75rem, 2vw + 0.75rem, 2.25rem);
+  /* 
+    Mobile (320px): ~18px (1.125rem)
+    Tablet (768px): ~20px (1.25rem)
+    Desktop (1920px): ~24px (1.5rem max)
+  */
+}
+
+/* AI Badge - Responsive & Elastic */
+.fluid-badge {
+  font-size: clamp(0.75rem, 0.9vw + 0.3rem, 0.875rem);
+  /* 
+    Mobile (320px): ~12px (0.75rem)
+    Tablet (768px): ~13px (0.8125rem)
+    Desktop (1920px): ~14px (0.875rem max)
+  */
+}
+
+/* Button Text - Responsive & Elastic */
+.fluid-button {
+  font-size: clamp(1rem, 1.2vw + 0.4rem, 1.25rem);
+  /* 
+    Mobile (320px): ~16px (1rem)
+    Tablet (768px): ~18px (1.125rem)
+    Desktop (1920px): ~20px (1.25rem max)
+  */
+}

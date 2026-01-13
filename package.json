@@ -1,0 +1,48 @@
+{
+  "name": "memoflow",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
+    "@supabase/supabase-js": "^2.90.1",
+    "@types/three": "^0.182.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.26.1",
+    "jsdom": "^27.4.0",
+    "lucide-react": "^0.562.0",
+    "mammoth": "^1.11.0",
+    "next": "16.1.1",
+    "openai": "^6.16.0",
+    "pdf-parse": "^2.4.5",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "react-tsparticles": "^2.12.2",
+    "remark-gfm": "^4.0.1",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.182.0",
+    "tsparticles-slim": "^2.12.0",
+    "youtube-transcript": "^1.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
