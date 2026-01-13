@@ -1,9 +1,14 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs'; // <--- AJOUTE CETTE LIGNE IMPÉRATIVEMENT
+export const maxDuration = 60; // Optionnel : augmente le temps limite à 60s
+
+// ... le reste de tes imports ...
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/client";
 import { generateStudyContent } from "@/lib/ai/groq";
-// @ts-ignore - pdf-parse is CommonJS and doesn't support ES6 imports
-const pdfParse = require("pdf-parse");
-import mammoth from "mammoth";
+
+// Force dynamic rendering - prevents static analysis issues with CommonJS modules
+export const dynamic = "force-dynamic";
 
 /**
  * Upload document to Supabase Storage
@@ -45,34 +50,40 @@ async function uploadDocumentToStorage(
   return urlData.publicUrl;
 }
 
-/**
- * Extract text from PDF
- */
-async function extractTextFromPDF(buffer: Buffer): Promise<string> {
-  try {
-    const data = await pdfParse(buffer);
-    return data.text;
-  } catch (error) {
-    console.error("PDF parsing error:", error);
-    throw new Error("Failed to extract text from PDF");
-  }
-}
-
-/**
- * Extract text from DOCX
- */
-async function extractTextFromDOCX(buffer: Buffer): Promise<string> {
-  try {
-    const result = await mammoth.extractRawText({ buffer });
-    return result.value;
-  } catch (error) {
-    console.error("DOCX parsing error:", error);
-    throw new Error("Failed to extract text from DOCX");
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
+    // Lazy load CommonJS modules inside the function to avoid build-time analysis issues
+    // @ts-ignore - pdf-parse is CommonJS and doesn't support ES6 imports
+    const pdfParse = require("pdf-parse");
+    // @ts-ignore - mammoth is CommonJS and doesn't support ES6 imports
+    const mammoth = require("mammoth");
+
+    /**
+     * Extract text from PDF
+     */
+    async function extractTextFromPDF(buffer: Buffer): Promise<string> {
+      try {
+        const data = await pdfParse(buffer);
+        return data.text;
+      } catch (error) {
+        console.error("PDF parsing error:", error);
+        throw new Error("Failed to extract text from PDF");
+      }
+    }
+
+    /**
+     * Extract text from DOCX
+     */
+    async function extractTextFromDOCX(buffer: Buffer): Promise<string> {
+      try {
+        const result = await mammoth.extractRawText({ buffer });
+        return result.value;
+      } catch (error) {
+        console.error("DOCX parsing error:", error);
+        throw new Error("Failed to extract text from DOCX");
+      }
+    }
+
     const formData = await request.formData();
     const file = formData.get("file") as File;
     const userId = formData.get("userId") as string;
