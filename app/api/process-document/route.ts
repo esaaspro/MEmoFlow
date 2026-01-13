@@ -1,14 +1,11 @@
-export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs'; // <--- AJOUTE CETTE LIGNE IMPÉRATIVEMENT
-export const maxDuration = 60; // Optionnel : augmente le temps limite à 60s
+// Force dynamic rendering - prevents static analysis issues with CommonJS modules
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const maxDuration = 60;
 
-// ... le reste de tes imports ...
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/client";
 import { generateStudyContent } from "@/lib/ai/groq";
-
-// Force dynamic rendering - prevents static analysis issues with CommonJS modules
-export const dynamic = "force-dynamic";
 
 /**
  * Upload document to Supabase Storage
