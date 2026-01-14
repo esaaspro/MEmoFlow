@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { groq } from "@/lib/ai/groq";
+import { getGroqClient } from "@/lib/ai/groq";
 import { uploadAudioToStorage } from "@/lib/supabase/storage";
 import { createClient } from "@/lib/supabase/client";
 
@@ -32,6 +32,9 @@ export async function POST(request: NextRequest) {
 
     // Step 2: Transcribe using Groq Whisper
     console.log("Transcribing audio with Groq Whisper...");
+    
+    // Lazy initialize client to prevent build-time errors
+    const groq = getGroqClient();
     
     const transcription = await groq.audio.transcriptions.create({
       file: audioFile,

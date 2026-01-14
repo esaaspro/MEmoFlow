@@ -1,13 +1,19 @@
 import OpenAI from "openai";
 
-// Initialize OpenAI client pointing to Groq servers
-export const groq = new OpenAI({
-  apiKey: process.env.GROQ_API_KEY,
-  baseURL: "https://api.groq.com/openai/v1",
-});
-
 // Model to use (Llama 3.3 70B - Best balance of intelligence and speed)
 export const GROQ_MODEL = "llama-3.3-70b-versatile";
+
+/**
+ * Get Groq client with lazy initialization
+ * Uses dummy-key during build to prevent build-time errors
+ * Will fail at runtime if GROQ_API_KEY is actually missing
+ */
+export function getGroqClient(): OpenAI {
+  return new OpenAI({
+    apiKey: process.env.GROQ_API_KEY || "dummy-key",
+    baseURL: "https://api.groq.com/openai/v1",
+  });
+}
 
 // System prompt for educational content generation
 export const STUDY_SYSTEM_PROMPT = `Tu es un expert pédagogique pour étudiants.
@@ -32,6 +38,9 @@ Ton ton est éducatif, direct et motivant. Tu aides les étudiants à réussir l
  */
 export async function generateStudyContent(text: string): Promise<string> {
   try {
+    // Lazy initialize client inside function to prevent build-time errors
+    const groq = getGroqClient();
+    
     const completion = await groq.chat.completions.create({
       model: GROQ_MODEL,
       messages: [

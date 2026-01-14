@@ -342,27 +342,27 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid gap-8 md:grid-cols-2"
+            className="grid gap-8 md:grid-cols-3"
           >
-            {/* Plan Gratuit */}
+            {/* Plan Découverte - Gratuit */}
             <motion.div
               variants={fadeInUp}
               className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-xl"
             >
-              <h3 className="mb-2 text-2xl font-bold">Starter</h3>
-              <p className="mb-6 text-zinc-400">Pour tester l&apos;eau</p>
+              <h3 className="mb-2 text-2xl font-bold">Découverte</h3>
+              <p className="mb-6 text-zinc-400">Parfait pour tester MemoFlow</p>
               
               <div className="mb-8">
                 <span className="text-5xl font-bold">0€</span>
-                <span className="text-zinc-400">/mois</span>
+                <span className="text-zinc-400"> gratuit</span>
               </div>
 
               <ul className="mb-8 space-y-3">
                 {[
-                  "2h d'enregistrement/mois",
-                  "Transcription basique",
-                  "Synthèse simple",
-                  "5 flashcards/mois",
+                  "3 documents par mois",
+                  "Résumés basiques",
+                  "Accès standard",
+                  "Support communautaire",
                 ].map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-zinc-300">
                     <CheckCircle2 className="h-5 w-5 text-zinc-500" />
@@ -376,14 +376,14 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* Plan Premium */}
+            {/* Plan Étudiant - Mis en avant */}
             <motion.div
               variants={fadeInUp}
               className="group relative overflow-hidden rounded-3xl p-8"
             >
-              {/* Badge Populaire */}
+              {/* Badge Best Value */}
               <div className="absolute right-8 top-8 z-20 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-1 text-sm font-semibold">
-                Populaire
+                Le plus populaire
               </div>
 
               {/* Bordure animée */}
@@ -391,9 +391,9 @@ export default function Home() {
               <div className="absolute inset-[2px] -z-10 rounded-3xl bg-zinc-900" />
 
               <h3 className="mb-2 text-2xl font-bold">
-                <span className="gradient-text">Major</span>
+                <span className="gradient-text">Étudiant</span>
               </h3>
-              <p className="mb-6 text-zinc-400">Pour les vrais winners</p>
+              <p className="mb-6 text-zinc-400">L&apos;offre idéale pour réussir tes partiels</p>
               
               <div className="mb-8">
                 <span className="text-5xl font-bold">9,90€</span>
@@ -402,14 +402,11 @@ export default function Home() {
 
               <ul className="mb-8 space-y-3">
                 {[
-                  "Enregistrement illimité",
-                  "Transcription + timestamps",
-                  "Synthèse intelligente IA",
-                  "Flashcards illimitées",
-                  "Quiz adaptatifs",
-                  "Mode Chat GPT-4o",
-                  "Exam Radar activé",
-                  "Export PDF/Notion/Anki",
+                  "Documents illimités",
+                  "Génération de Flashcards IA",
+                  "Mode Quiz interactif",
+                  "Support prioritaire",
+                  "Export de tes notes",
                 ].map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-zinc-100">
                     <CheckCircle2 className="h-5 w-5 text-purple-400" />
@@ -419,7 +416,43 @@ export default function Home() {
               </ul>
 
               <button className="w-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-purple-500/50">
-                Passer en Major
+                Choisir l&apos;offre Étudiant
+              </button>
+            </motion.div>
+
+            {/* Plan Major */}
+            <motion.div
+              variants={fadeInUp}
+              className="relative overflow-hidden rounded-3xl border border-purple-500/30 bg-zinc-900/50 p-8 backdrop-blur-xl"
+            >
+              <h3 className="mb-2 text-2xl font-bold">
+                <span className="gradient-text">Major</span>
+              </h3>
+              <p className="mb-6 text-zinc-400">Pour ceux qui visent l&apos;excellence</p>
+              
+              <div className="mb-8">
+                <span className="text-5xl font-bold">16,90€</span>
+                <span className="text-zinc-400">/mois</span>
+              </div>
+
+              <ul className="mb-8 space-y-3">
+                {[
+                  "Tout du plan Étudiant",
+                  "Upload de fichiers > 50Mo",
+                  "IA Modèle Supérieur (Plus précis)",
+                  "Export PDF professionnel",
+                  "Accès aux nouvelles fonctionnalités en avant-première",
+                  "Support dédié 24/7",
+                ].map((feature) => (
+                  <li key={feature} className="flex items-center gap-3 text-zinc-100">
+                    <CheckCircle2 className="h-5 w-5 text-purple-400" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <button className="w-full rounded-full border border-purple-500/50 bg-purple-500/10 py-3 font-semibold text-white transition-all hover:bg-purple-500/20 hover:scale-[1.02]">
+                Devenir Major
               </button>
             </motion.div>
           </motion.div>
