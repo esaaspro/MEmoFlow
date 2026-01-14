@@ -1,8 +1,5 @@
 "use client";
 
-// Force dynamic rendering - prevents static prerendering for protected route
-export const dynamic = "force-dynamic";
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,6 +11,9 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import { createClient } from "@/lib/supabase/client";
 import type { Note, Folder } from "@/types";
+
+// Force dynamic rendering - prevents static prerendering for protected route
+export const dynamic = "force-dynamic";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
