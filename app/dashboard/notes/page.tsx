@@ -1,5 +1,8 @@
 "use client";
 
+// Force dynamic rendering - prevents static prerendering for protected route
+export const dynamic = "force-dynamic";
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
